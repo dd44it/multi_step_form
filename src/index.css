@@ -1,3 +1,13 @@
+:root {
+  --bg-body-color: #F3F3E3;
+  --dark: #111827;
+  --white: #FFFFFF;
+  --gray: #9CA3AF;
+  --primary: #FC6C4C;
+  --secondary: #E5E7EB;
+
+}
+
 *,
 *::before,
 *::after {
