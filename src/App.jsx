@@ -1,6 +1,12 @@
+import Header from "./components/Header"
+
 function App() {
 
-  return <h1> multi step form </h1>
+  return (
+    <div className="site-wrapper">
+      <Header/>
+    </div>
+  )
    
 }
 

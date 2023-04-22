@@ -15,3 +15,40 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.site-wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg-body-color);
+}
+
+.header {
+  color: var(--dark);
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.header-container {
+  width: 580px;
+  margin: 0 auto;
+}
+
+.title {
+  font-family: "Merriweather", sans-serif;
+  font-weight: 900;
+  font-size: 32px;
+  line-height: 40px;
+  margin-bottom: 14px;
+}
+
+.subtitle {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+}
