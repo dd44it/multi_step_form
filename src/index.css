@@ -81,6 +81,8 @@ body {
   font-size: 14px;
   line-height: 21px;
   cursor: pointer;
+  display: grid;
+  place-items: center;
 }
 
 .btn-step:hover {
@@ -193,4 +195,36 @@ body {
   border: none;
   color: var(--white);
   background-color: var(--primary);
+}
+
+.step-badge {
+  padding: 16px 0 19px 18px;
+  display: flex;
+  flex: 0 1 50%;
+  align-items: center;
+  gap: 16px;
+  border: 1px solid var(--border-secondary);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.btn-img-wrapper {
+  width: 20px;
+  height: 20px;
+}
+
+.btn-flower {
+  background-image: url("../src/assets/icons/flower.svg");
+}
+
+.btn-compass {
+  background-image: url("../src/assets/icons/compass.svg");
+}
+
+.btn-rocket {
+  background-image: url("../src/assets/icons/rocket.svg");
+}
+
+.btn-title {
+  background-image: url("../src/assets/icons/title.svg");
 }

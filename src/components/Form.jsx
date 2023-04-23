@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import StepForm1 from "./steps/StepForm1"
+import StepForm2 from "./steps/StepForm2"
 
 export default function Form() {
   const [formStep, setFormStep] = useState([
@@ -11,7 +12,7 @@ export default function Form() {
       email: "",
       phone: "",
       portfolio: "",
-      active: true,
+      active: false,
       show: true,
     },
     {
@@ -19,7 +20,7 @@ export default function Form() {
       titleStep: "Skill Level",
       subtitle: "Please tell us about your skill level in frontend development.",
       skillLevel: "",
-      active: false,
+      active: true,
       show: true,
     },
     {
@@ -70,7 +71,7 @@ export default function Form() {
   })
 
   const activeForm = formStep.map((step) => {
-    if (step.idStep === 1) {
+    if (step.active && step.idStep === 1) {
       return (
         <React.Fragment key={step.idStep}>
           <StepForm1
@@ -79,6 +80,16 @@ export default function Form() {
             phone={step.phone}
             portfolio={step.portfolio}
             handleEv={handleEv}
+          />
+        </React.Fragment>
+      )
+    }
+    else if(step.active && step.idStep === 2){
+      return (
+        <React.Fragment key={step.idStep}>
+          <StepForm2
+            skillLevel={step.skillLevel}
+            activeBtn={activeBtn}
           />
         </React.Fragment>
       )
@@ -98,7 +109,15 @@ export default function Form() {
     )
   }
 
+  function activeBtn(e){
+    const { name, className } = e.target
+    console.log(className, name)
+
+    
+  }
+
   console.log(formStep)
+  console.log(activeForm)
 
   return (
     <main className="main">
