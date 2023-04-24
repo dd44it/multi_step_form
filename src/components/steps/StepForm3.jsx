@@ -4,7 +4,14 @@ export default function StepForm3({ preferenceStack, challengePreference, handle
     return (
       <div className={`step-badge ${checkActive}`} key={index}>
         <div className="checkbox-container">
-          <input type="checkbox" id={item} name={item} onChange={handleEv} checked={checkActive} />
+          <input
+            type="checkbox"
+            id={item}
+            name={item}
+            onChange={handleEv}
+            checked={checkActive}
+            data-name-form="preferenceStack"
+          />
           <label className="label" htmlFor={item}>
             {item}
           </label>
