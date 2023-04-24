@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "titleStep": "Personal Information",
+    "subtitle": "Please provide your personal details so we can get to know you better.",
+    "active": true,
+    "show": true
+  },
+  {
+    "id": 2,
+    "titleStep": "Skill Level",
+    "subtitle": "Please tell us about your skill level in frontend development.",
+    "active": false,
+    "show": true
+  },
+  {
+    "id": 3,
+    "titleStep": "Challenge Preference",
+    "subtitle": "Please tell us which frontend challenges you would like to participate in.",
+    "active": false,
+    "show": true
+  },
+  {
+    "id": 4,
+    "titleStep": "Review and Confirm",
+    "subtitle": "Please review your information to make sure everything is accurate.",
+    "active": false,
+    "show": true
+  }
+]
