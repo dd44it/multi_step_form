@@ -11,7 +11,8 @@
     "titleStep": "Skill Level",
     "subtitle": "Please tell us about your skill level in frontend development.",
     "active": false,
-    "show": true
+    "show": true,
+    "skillLevel": ["beginner", "intermediate", "advanced", "expert"]
   },
   {
     "id": 3,
