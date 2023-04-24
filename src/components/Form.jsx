@@ -1,22 +1,30 @@
 import React, { useState } from "react"
 import StepForm1 from "./steps/StepForm1"
 import StepForm2 from "./steps/StepForm2"
+import StepForm3 from "./steps/StepForm3"
 import data from "../../data.json"
 
 export default function Form() {
+  const FIRST_ID = 1,
+    SECOND_ID = 2,
+    THIRD_ID = 3,
+    FOURTH_ID = 4
+
   const [formStep, setFormStep] = useState({
-    id: 1,
+    id: FIRST_ID,
     fullName: "",
     email: "",
     phone: "",
     portfolio: "",
     skillLevel: "",
-    preferenceStack: "",
+    preferenceStack: [],
   })
 
   const stepId = data.map((step) => (
     <React.Fragment key={step.id}>
-      <button className={`btn-step ${step.active ? "btn-primary" : ""}`}>{step.id}</button>
+      <button className={`btn-step ${formStep.id >= step.id ? "btn-primary" : ""}`}>
+        {step.id}
+      </button>
       {step.id !== 4 && <hr className="decoration-line" />}
     </React.Fragment>
   ))
@@ -31,7 +39,7 @@ export default function Form() {
   )
 
   const activeForm =
-    formStep.id === 1 ? (
+    formStep.id === FIRST_ID ? (
       <StepForm1
         fullName={formStep.fullName}
         email={formStep.email}
@@ -39,13 +47,39 @@ export default function Form() {
         portfolio={formStep.portfolio}
         handleEv={handleEv}
       />
-    ) : (
+    ) : formStep.id === SECOND_ID ? (
       <StepForm2 skillLevel={formStep.skillLevel} activeBtn={activeBtn} />
+    ) : formStep.id === THIRD_ID ? (
+      <StepForm3 preferenceStack={formStep.preferenceStack} handleEv={handleEv} challengePreference={findCurrentTitle.challengePreference} />
+
+    ) : formStep.id === FOURTH_ID ? (
+      <StepForm2 preferenceStack={formStep.preferenceStack} id={formStep.id} handleEv={handleEv} />
+    ) : (
+      <StepForm2 preferenceStack={formStep.preferenceStack} handleEv={handleEv} />
     )
 
   function handleEv(e) {
-    const { name, value } = e.target
-    setFormStep((prevData) => ({ ...prevData, [name]: value }))
+    const { name, value, type } = e.target
+    if (type === "checkbox") {
+      if (formStep.preferenceStack.includes(name)) {
+        setFormStep((prevData) => ({
+          ...prevData,
+          "preferenceStack": [...prevData.preferenceStack].filter(item => item !== name)
+        }))
+      } else {
+        setFormStep((prevData) => ({
+          ...prevData,
+          "preferenceStack": [...prevData.preferenceStack, name]
+        }))
+      }
+    }
+    else {
+      setFormStep((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }))
+    }
+
   }
 
   function activeBtn(e) {
@@ -70,12 +104,21 @@ export default function Form() {
           <div className="action-form">{activeForm}</div>
         </div>
         <div className="form-footer">
-          <button className="btn btn-border" onClick={previousForm}>
-            Go Back
-          </button>
-          <button className="btn btn-primary" onClick={nextForm}>
-            Next Step
-          </button>
+          {formStep.id > FIRST_ID && (
+            <button className="btn btn-border" onClick={previousForm}>
+              Go Back
+            </button>
+          )}
+          {formStep.id < FOURTH_ID && (
+            <button className="btn btn-primary" onClick={nextForm}>
+              Next Step
+            </button>
+          )}
+          {formStep.id === FOURTH_ID && (
+            <button className="btn btn-primary" onClick={nextForm}>
+              Submit
+            </button>
+          )}
         </div>
       </div>
     </main>

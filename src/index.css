@@ -136,6 +136,7 @@ body {
 
 .row {
   display: flex;
+  flex-wrap: wrap;
   gap: 40px;
   margin-bottom: 24px;
 }
@@ -144,7 +145,7 @@ body {
   display: flex;
   flex-direction: column;
   row-gap: 8px;
-  flex: 0 1 50%;
+  flex: 0 0 270px;
 }
 
 .label {
@@ -200,7 +201,7 @@ body {
 .step-badge {
   padding: 16px 0 16px 18px;
   display: flex;
-  flex: 0 1 50%;
+  flex: 0 0 270px;
   align-items: center;
   gap: 16px;
   border: 1px solid var(--border-secondary);
@@ -278,6 +279,7 @@ body {
   border-color: #999;
 }
 
+.step-badge-active,
 .step-badge:has(input[type="checkbox"]:checked){
   border: 1px solid var(--primary);
 }
