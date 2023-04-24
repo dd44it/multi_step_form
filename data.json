@@ -18,7 +18,8 @@
     "titleStep": "Challenge Preference",
     "subtitle": "Please tell us which frontend challenges you would like to participate in.",
     "active": false,
-    "show": true
+    "show": true,
+    "challengePreference": ["HTML/CSS/JS", "ReactJs", "AngularJs", "Vue.js"]
   },
   {
     "id": 4,
