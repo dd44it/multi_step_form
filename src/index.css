@@ -214,19 +214,19 @@ body {
   height: 20px;
 }
 
-.btn-flower {
+.btn-beginner {
   background-image: url("../src/assets/icons/flower.svg");
 }
 
-.btn-compass {
+.btn-intermediate {
   background-image: url("../src/assets/icons/compass.svg");
 }
 
-.btn-rocket {
+.btn-advanced {
   background-image: url("../src/assets/icons/rocket.svg");
 }
 
-.btn-title {
+.btn-expert {
   background-image: url("../src/assets/icons/title.svg");
 }
 
@@ -282,4 +282,14 @@ body {
 .step-badge-active,
 .step-badge:has(input[type="checkbox"]:checked){
   border: 1px solid var(--primary);
+}
+
+.checkbox-none .checkbox-container label::before,
+.checkbox-none .checkbox-container input[type="checkbox"]:checked + label::before {
+  display: none;
+  /* visibility: hidden; */
+}
+
+.checkbox-none .btn-step {
+  margin-right: 16px;
 }
