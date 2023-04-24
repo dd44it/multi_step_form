@@ -16,7 +16,7 @@ export default function Form() {
     email: "",
     phone: "",
     portfolio: "",
-    skillLevel: "",
+    skillLevel: [],
     preferenceStack: [],
   })
 
@@ -48,10 +48,13 @@ export default function Form() {
         handleEv={handleEv}
       />
     ) : formStep.id === SECOND_ID ? (
-      <StepForm2 skillLevel={formStep.skillLevel} activeBtn={activeBtn} />
+      <StepForm2 skillLevel={formStep.skillLevel} skillLevelData={findCurrentTitle.skillLevel} handleEv={handleEv} />
     ) : formStep.id === THIRD_ID ? (
-      <StepForm3 preferenceStack={formStep.preferenceStack} handleEv={handleEv} challengePreference={findCurrentTitle.challengePreference} />
-
+      <StepForm3
+        preferenceStack={formStep.preferenceStack}
+        handleEv={handleEv}
+        challengePreference={findCurrentTitle.challengePreference}
+      />
     ) : formStep.id === FOURTH_ID ? (
       <StepForm2 preferenceStack={formStep.preferenceStack} id={formStep.id} handleEv={handleEv} />
     ) : (
@@ -59,32 +62,27 @@ export default function Form() {
     )
 
   function handleEv(e) {
-    const { name, value, type } = e.target
+    const { name, value, type, dataset } = e.target
+    console.log(dataset)
+    const nameForm = dataset.nameForm
     if (type === "checkbox") {
-      if (formStep.preferenceStack.includes(name)) {
+      if (formStep[nameForm].includes(name)) {
         setFormStep((prevData) => ({
           ...prevData,
-          "preferenceStack": [...prevData.preferenceStack].filter(item => item !== name)
+          [nameForm]: [...prevData[nameForm]].filter((item) => item !== name),
         }))
       } else {
         setFormStep((prevData) => ({
           ...prevData,
-          "preferenceStack": [...prevData.preferenceStack, name]
+          [nameForm]: [...prevData[nameForm], name],
         }))
       }
-    }
-    else {
+    } else {
       setFormStep((prevData) => ({
         ...prevData,
         [name]: value,
       }))
     }
-
-  }
-
-  function activeBtn(e) {
-    const { name, className } = e.target
-    // console.log(className, name)
   }
 
   function nextForm() {
