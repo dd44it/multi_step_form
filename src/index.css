@@ -6,6 +6,7 @@
   --primary: #FC6C4C;
   --secondary: #E5E7EB;
   --border-secondary: #D1D5DB;
+  --dark-blue: #4B5563;
 }
 
 *,
@@ -292,4 +293,32 @@ body {
 
 .checkbox-none .btn-step {
   margin-right: 16px;
+}
+
+.column-3 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.column-3 .step-badge{
+  flex: 0 0 170px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: flex-start;
+}
+
+.column-3 .name-label {
+  color: var(--dark-blue);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.column-3 .result {
+  color: var(--dark);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
 }

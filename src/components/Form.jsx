@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import StepForm1 from "./steps/StepForm1"
 import StepForm2 from "./steps/StepForm2"
 import StepForm3 from "./steps/StepForm3"
+import StepForm4 from "./steps/StepForm4"
 import data from "../../data.json"
 
 export default function Form() {
@@ -56,7 +57,7 @@ export default function Form() {
         challengePreference={findCurrentTitle.challengePreference}
       />
     ) : formStep.id === FOURTH_ID ? (
-      <StepForm2 preferenceStack={formStep.preferenceStack} id={formStep.id} handleEv={handleEv} />
+      <StepForm4 formStep={formStep} />
     ) : (
       <StepForm2 preferenceStack={formStep.preferenceStack} handleEv={handleEv} />
     )
