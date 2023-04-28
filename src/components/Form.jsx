@@ -3,6 +3,7 @@ import StepForm1 from "./steps/StepForm1"
 import StepForm2 from "./steps/StepForm2"
 import StepForm3 from "./steps/StepForm3"
 import StepForm4 from "./steps/StepForm4"
+import Congrats from "./steps/Congrats"
 import data from "../../data.json"
 
 export default function Form() {
@@ -21,21 +22,25 @@ export default function Form() {
     preferenceStack: [],
   })
 
-  const stepId = data.map((step) => (
-    <React.Fragment key={step.id}>
-      <button className={`btn-step ${formStep.id >= step.id ? "btn-primary" : ""}`}>
-        {step.id}
-      </button>
-      {step.id !== 4 && <hr className="decoration-line" />}
-    </React.Fragment>
-  ))
+  const steps = data.filter((step) => step.show)
 
-  const findCurrentTitle = data.find((step) => step.id === formStep.id)
+  const stepId = steps.map((step) => {
+    const activeClassBtn = formStep.id >= step.id ? "btn-primary" : ""
+    const activeClassLine = formStep.id > step.id ? "line-primary" : ""
+    return (
+      <React.Fragment key={step.id}>
+        <button className={`btn-step ${activeClassBtn}`}>{step.id}</button>
+        {step.id !== steps.length && <hr className={`decoration-line ${activeClassLine}`} />}
+      </React.Fragment>
+    )
+  })
+
+  const currentForm = data.find((step) => step.id === formStep.id)
 
   const currentTitle = (
-    <React.Fragment key={findCurrentTitle.id}>
-      <h3 className="form-title">{findCurrentTitle.titleStep}</h3>
-      <h4 className="form-subtitle">{findCurrentTitle.subtitle}</h4>
+    <React.Fragment key={currentForm.id}>
+      <h3 className="form-title">{currentForm.titleStep}</h3>
+      <h4 className="form-subtitle">{currentForm.subtitle}</h4>
     </React.Fragment>
   )
 
@@ -49,17 +54,19 @@ export default function Form() {
         handleEv={handleEv}
       />
     ) : formStep.id === SECOND_ID ? (
-      <StepForm2 skillLevel={formStep.skillLevel} skillLevelData={findCurrentTitle.skillLevel} handleEv={handleEv} />
+      <StepForm2
+        skillLevel={formStep.skillLevel}
+        skillLevelData={currentForm.skillLevel}
+        handleEv={handleEv}
+      />
     ) : formStep.id === THIRD_ID ? (
       <StepForm3
         preferenceStack={formStep.preferenceStack}
         handleEv={handleEv}
-        challengePreference={findCurrentTitle.challengePreference}
+        challengePreference={currentForm.challengePreference}
       />
-    ) : formStep.id === FOURTH_ID ? (
-      <StepForm4 formStep={formStep} />
     ) : (
-      <StepForm2 preferenceStack={formStep.preferenceStack} handleEv={handleEv} />
+      <StepForm4 formStep={formStep} />
     )
 
   function handleEv(e) {
@@ -94,31 +101,42 @@ export default function Form() {
     setFormStep((prevData) => ({ ...prevData, id: prevData.id - 1 }))
   }
 
+  const bodyForm =
+    formStep.id <= FOURTH_ID ? (
+      <div className="form-body">
+        {currentTitle}
+        {activeForm}
+      </div>
+    ) : (
+      <div className="form-body-none-border">
+        <Congrats title={currentForm.titleStep} subtitle={currentForm.subtitle} />
+      </div>
+    )
+
   return (
     <main className="main">
       <div className="container-main">
-        <div className="form-steps">{stepId}</div>
-        <div className="form-body">
-          {currentTitle}
-          <div className="action-form">{activeForm}</div>
-        </div>
-        <div className="form-footer">
-          {formStep.id > FIRST_ID && (
-            <button className="btn btn-border" onClick={previousForm}>
-              Go Back
-            </button>
-          )}
-          {formStep.id < FOURTH_ID && (
-            <button className="btn btn-primary" onClick={nextForm}>
-              Next Step
-            </button>
-          )}
-          {formStep.id === FOURTH_ID && (
-            <button className="btn btn-primary" onClick={nextForm}>
-              Submit
-            </button>
-          )}
-        </div>
+        {formStep.id <= FOURTH_ID && <div className="form-steps">{stepId}</div>}
+        <>{bodyForm}</>
+        {formStep.id <= FOURTH_ID && (
+          <div className="form-footer">
+            {formStep.id > FIRST_ID && (
+              <button className="btn btn-border" onClick={previousForm}>
+                Go Back
+              </button>
+            )}
+            {formStep.id < FOURTH_ID && (
+              <button className="btn btn-primary" onClick={nextForm}>
+                Next Step
+              </button>
+            )}
+            {formStep.id === FOURTH_ID && (
+              <button className="btn btn-primary" onClick={nextForm}>
+                Submit
+              </button>
+            )}
+          </div>
+        )}
       </div>
     </main>
   )

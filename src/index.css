@@ -7,6 +7,7 @@
   --secondary: #E5E7EB;
   --border-secondary: #D1D5DB;
   --dark-blue: #4B5563;
+  --gray-subtitle: #6B7280;
 }
 
 *,
@@ -113,10 +114,19 @@ body {
   border: none;
 }
 
+.line-primary {
+  background: var(--primary);
+}
+
 .form-body {
   border-top: 1px solid var(--secondary);
   border-bottom: 1px solid var(--secondary);
   padding: 32px 0;
+}
+
+.form-body-none-border {
+  text-align: center;
+  padding: 100px 0;
 }
 
 .form-title {
@@ -131,7 +141,7 @@ body {
   font-weight: 400;
   font-size: 14px;
   line-height: 21px;
-  color: #6B7280;
+  color: var(--gray-subtitle);
   margin-bottom: 24px;
 }
 
@@ -321,4 +331,31 @@ body {
   font-weight: 500;
   font-size: 12px;
   line-height: 18px;
+}
+
+.congrats-icon-wrapper {
+  background-image: url("../src/assets/icons/big-done.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  margin-bottom: 24px;
+}
+
+.congrats-title {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 36px;
+  color: var(--dark);
+  margin-bottom: 16px;
+}
+
+.congrats-description {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  color: var(--gray-subtitle);
+  width: 475px;
+  margin: 0 auto;
 }
