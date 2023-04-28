@@ -1,3 +1,5 @@
+import PropTypes from "prop-types"
+
 export default function StepForm1({ fullName, email, phone, portfolio, handleEv }) {
   return (
     <>
@@ -63,4 +65,12 @@ export default function StepForm1({ fullName, email, phone, portfolio, handleEv 
       </div>
     </>
   )
+}
+
+StepForm1.propTypes = {
+  fullName: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  phone: PropTypes.string.isRequired,
+  portfolio: PropTypes.string.isRequired,
+  handleEv: PropTypes.func,
 }

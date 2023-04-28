@@ -1,3 +1,5 @@
+import PropTypes from "prop-types"
+
 export default function StepForm2({ skillLevel, handleEv, skillLevelData }) {
   const skillLevelElem = skillLevelData.map((item, index) => {
     const checkActive = skillLevel.includes(item) ? "step-badge-active" : ""
@@ -21,4 +23,10 @@ export default function StepForm2({ skillLevel, handleEv, skillLevelData }) {
     )
   })
   return <div className="row">{skillLevelElem}</div>
+}
+
+StepForm2.propTypes = {
+  skillLevel: PropTypes.arrayOf(PropTypes.string).isRequired,
+  skillLevelData: PropTypes.arrayOf(PropTypes.string).isRequired,
+  handleEv: PropTypes.func,
 }

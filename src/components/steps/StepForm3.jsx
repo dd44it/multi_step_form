@@ -1,3 +1,5 @@
+import PropTypes from "prop-types"
+
 export default function StepForm3({ preferenceStack, challengePreference, handleEv }) {
   const preferenceElem = challengePreference.map((item, index) => {
     const checkActive = preferenceStack.includes(item) ? "step-badge-active" : ""
@@ -29,4 +31,10 @@ export default function StepForm3({ preferenceStack, challengePreference, handle
   })
 
   return <div className="row">{preferenceElem}</div>
+}
+
+StepForm3.propTypes = {
+  preferenceStack: PropTypes.arrayOf(PropTypes.string).isRequired,
+  challengePreference: PropTypes.arrayOf(PropTypes.string).isRequired,
+  handleEv: PropTypes.func,
 }
