@@ -71,25 +71,43 @@ export default function Form() {
 
   function handleEv(e) {
     const { name, value, type, dataset } = e.target
-    console.log(dataset)
-    const nameForm = dataset.nameForm
-    if (type === "checkbox") {
-      if (formStep[nameForm].includes(name)) {
-        setFormStep((prevData) => ({
-          ...prevData,
-          [nameForm]: [...prevData[nameForm]].filter((item) => item !== name),
-        }))
+    const {nameForm, nameValue, countChecked} = dataset
+
+    if (nameValue) {
+      if (countChecked === "1") {
+        const parentListElem = e.target.parentElement.childNodes
+        parentListElem.forEach((item) => item.classList.remove("step-badge-active"))
+        e.target.classList.add("step-badge-active")
+        handleStateChooseItem(nameForm, nameValue, countChecked)
       } else {
-        setFormStep((prevData) => ({
-          ...prevData,
-          [nameForm]: [...prevData[nameForm], name],
-        }))
+        e.target.classList.toggle("step-badge-active")
+        handleStateChooseItem(nameForm, nameValue, countChecked)
       }
+    }
+    else if (type === "checkbox") {
+      handleStateChooseItem(nameForm, name, countChecked)
     } else {
       setFormStep((prevData) => ({
         ...prevData,
         [name]: value,
       }))
+    }
+  }
+
+  function handleStateChooseItem(nameForm, nameValue, count) {
+    if (formStep[nameForm].includes(nameValue)) {
+      setFormStep((prevData) => ({
+        ...prevData,
+        [nameForm]: [...prevData[nameForm]].filter((item) => item !== nameValue),
+      }))
+    } else {
+      setFormStep((prevData) => {
+        const result = +count > 1 ? [...prevData[nameForm], nameValue] : [nameValue]
+        return {
+          ...prevData,
+          [nameForm]: result,
+        }
+      })
     }
   }
 
