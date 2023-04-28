@@ -104,6 +104,7 @@ export default function Form() {
   const bodyForm =
     formStep.id <= FOURTH_ID ? (
       <div className="form-body">
+        <div className="form-steps">{stepId}</div>
         {currentTitle}
         {activeForm}
       </div>
@@ -116,7 +117,6 @@ export default function Form() {
   return (
     <main className="main">
       <div className="container-main">
-        {formStep.id <= FOURTH_ID && <div className="form-steps">{stepId}</div>}
         <>{bodyForm}</>
         {formStep.id <= FOURTH_ID && (
           <div className="form-footer">

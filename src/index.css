@@ -65,11 +65,13 @@ body {
   border-radius: 16px;
 }
 
-.form-steps {
+.form-steps { 
   padding: 0 18px 32px 18px;
   display: flex;
   align-items: center;
   gap: 18px;
+  border-bottom: 1px solid var(--secondary);
+  margin-bottom: 32px;
 }
 
 .btn-step {
@@ -119,9 +121,8 @@ body {
 }
 
 .form-body {
-  border-top: 1px solid var(--secondary);
   border-bottom: 1px solid var(--secondary);
-  padding: 32px 0;
+  padding: 0 0 32px 0;
 }
 
 .form-body-none-border {
