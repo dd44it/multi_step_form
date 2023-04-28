@@ -1,3 +1,5 @@
+import PropTypes from "prop-types"
+
 export default function Congrats({title, subtitle}){
   return (
     <section className="congrats">
@@ -6,4 +8,9 @@ export default function Congrats({title, subtitle}){
       <p className="congrats-description"> {subtitle} </p>
     </section>
   )
+}
+
+Congrats.propTypes = {
+  title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string.isRequired,
 }
