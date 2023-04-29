@@ -20,6 +20,7 @@
 
 body {
   font-family: "Poppins", sans-serif;
+  background: var(--bg-body-color);
 }
 
 .site-wrapper {
@@ -359,4 +360,91 @@ body {
   color: var(--gray-subtitle);
   width: 475px;
   margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .site-wrapper {
+    padding: 20px;
+    height: auto;
+  }
+
+  .main {
+    max-width: 100%;
+  }
+
+  .row {
+    gap: 20px;
+  }
+
+  .main,
+  .header-container,
+  .step-badge,
+  .column-3 .step-badge,
+  .row-input,
+  .congrats-description {
+    width: 100%;
+  }
+
+  .row-wrapper,
+  .step-badge,
+  .column-3 .step-badge {
+    flex: auto;
+  }
+
+  .form-steps {
+    margin: 0;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 0 0 32px 0;
+  }
+
+  .decoration-line {
+    display: none;
+    width: 6.25rem;
+  }
+
+  .btn-step {
+    min-width: 32px;
+  }
+  
+  .column-3 {
+    justify-content: center;
+  }
+
+  input {
+    text-overflow: ellipsis;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+  }
+
+  .form-title {
+    font-size: 18px;
+  }
+
+}
+
+@media(max-width: 375px){
+  .column-3 {
+    flex-direction: column;
+  }
+
+  .row {
+    margin-bottom: 0;
+  }
+
+  .form-footer {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .form-footer .btn {
+    width: 100%;
+  }
+
 }
